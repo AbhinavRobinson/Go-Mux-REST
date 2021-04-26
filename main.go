@@ -21,6 +21,9 @@ type Author struct {
 	LastName  string `json:"lastname"`
 }
 
+// Init Book slice
+var books []Book
+
 // Get all books
 func getBooks(w http.ResponseWriter, r *http.Request) {
 
@@ -49,6 +52,10 @@ func deleteBook(w http.ResponseWriter, r *http.Request) {
 func main() {
 	// Init Router
 	r := mux.NewRouter()
+
+	// Mock Data - !todo - add database
+	books = append(books, Book{"1", "0001", "Default Book A", &Author{"John", "Doe"}})
+	books = append(books, Book{"2", "0002", "Default Book B", &Author{"Kevin", "Smith"}})
 
 	// Route Handlers / Endpoints
 	r.HandleFunc("/api/books", getBooks).Methods("GET")
