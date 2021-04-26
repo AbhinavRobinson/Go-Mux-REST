@@ -9,7 +9,7 @@ import (
 )
 
 // Delete book
-func DeleteBook(w http.ResponseWriter, r *http.Request, books []models.Book) {
+func DeleteBook(w http.ResponseWriter, r *http.Request, books []models.Book) []models.Book {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
 	for index, book := range books {
@@ -19,4 +19,5 @@ func DeleteBook(w http.ResponseWriter, r *http.Request, books []models.Book) {
 		}
 	}
 	json.NewEncoder(w).Encode(books)
+	return books
 }

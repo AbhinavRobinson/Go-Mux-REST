@@ -11,7 +11,7 @@ import (
 )
 
 // Update book
-func UpdateBook(w http.ResponseWriter, r *http.Request, books []models.Book) {
+func UpdateBook(w http.ResponseWriter, r *http.Request, books []models.Book) []models.Book {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
 	for index, book := range books {
@@ -28,4 +28,5 @@ func UpdateBook(w http.ResponseWriter, r *http.Request, books []models.Book) {
 		}
 	}
 	json.NewEncoder(w).Encode(books)
+	return books
 }

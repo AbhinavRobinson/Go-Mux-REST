@@ -49,15 +49,15 @@ func getBook(w http.ResponseWriter, r *http.Request) {
 
 // Create new book
 func createBook(w http.ResponseWriter, r *http.Request) {
-	controllers.CreateBook(w, r, books)
+	books = controllers.CreateBook(w, r, books)
 }
 
 // Update book
 func updateBook(w http.ResponseWriter, r *http.Request) {
-	controllers.UpdateBook(w, r, books)
+	books = controllers.UpdateBook(w, r, books)
 }
 
 // Delete book
 func deleteBook(w http.ResponseWriter, r *http.Request) {
-	controllers.DeleteBook(w, r, books)
+	books = controllers.DeleteBook(w, r, books)
 }
