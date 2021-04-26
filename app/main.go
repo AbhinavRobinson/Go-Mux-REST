@@ -6,28 +6,28 @@ import (
 	"net/http"
 	"strconv"
 
-	store "github.com/abhinavrobinson/Go-Mux-REST/app/controllers"
-	"github.com/abhinavrobinson/Go-Mux-REST/app/models"
+	controller "github.com/abhinavrobinson/Go-Mux-REST/app/controllers"
+	model "github.com/abhinavrobinson/Go-Mux-REST/app/models"
 	"github.com/gorilla/mux"
 )
 
 func main() {
 	// Init Router
-	r := mux.NewRouter()
+	router := mux.NewRouter()
 
-	// Mock Data - !todo - add database
-	store.Books = append(store.Books, models.Book{ID: "1", Isbn: "0001", Title: "Default Book A", Author: &models.Author{FirstName: "John", LastName: "Doe"}})
-	store.Books = append(store.Books, models.Book{ID: "2", Isbn: "0002", Title: "Default Book B", Author: &models.Author{FirstName: "Kevin", LastName: "Smith"}})
+	// !TODO - add database
+	controller.Books = append(controller.Books, model.Book{ID: "1", Isbn: "0001", Title: "Default Book A", Author: &model.Author{FirstName: "John", LastName: "Doe"}})
+	controller.Books = append(controller.Books, model.Book{ID: "2", Isbn: "0002", Title: "Default Book B", Author: &model.Author{FirstName: "Kevin", LastName: "Smith"}})
 
 	// Route Handlers / Endpoints
-	r.HandleFunc("/api/books", store.GetBooks).Methods("GET")
-	r.HandleFunc("/api/books/{id}", store.GetBook).Methods("GET")
-	r.HandleFunc("/api/books", store.CreateBook).Methods("POST")
-	r.HandleFunc("/api/books/{id}", store.UpdateBook).Methods("PUT")
-	r.HandleFunc("/api/books/{id}", store.DeleteBook).Methods("DELETE")
+	router.HandleFunc("/api/books", controller.GetBooks).Methods("GET")
+	router.HandleFunc("/api/books/{id}", controller.GetBook).Methods("GET")
+	router.HandleFunc("/api/books", controller.CreateBook).Methods("POST")
+	router.HandleFunc("/api/books/{id}", controller.UpdateBook).Methods("PUT")
+	router.HandleFunc("/api/books/{id}", controller.DeleteBook).Methods("DELETE")
 
 	// Serve to port
 	const port int = 8000
 	fmt.Printf("Starting Server on port %d ...", port)
-	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port), r))
+	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port), router))
 }

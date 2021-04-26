@@ -4,11 +4,11 @@ import (
 	"net/http"
 
 	helper "github.com/abhinavrobinson/Go-Mux-REST/app/controllers/helpers"
-	"github.com/abhinavrobinson/Go-Mux-REST/app/models"
+	model "github.com/abhinavrobinson/Go-Mux-REST/app/models"
 )
 
 // Init Book slice
-var Books []models.Book
+var Books []model.Book
 
 // ------ DISPATCHERS ------
 
