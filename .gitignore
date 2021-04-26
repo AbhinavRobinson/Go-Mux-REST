@@ -1,0 +1,6 @@
+# Docker
+.devcontainer
+# Ease of Life
+makefile
+# Local Go Files
+*.sum
